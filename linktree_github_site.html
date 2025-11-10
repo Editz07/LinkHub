@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liquid Glass LinkTree</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at bottom, #050505, #0a0a0f);
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .dot {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.2;
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+      animation: glow 4s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    .shooting-star {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 0 15px white;
+      opacity: 0;
+      animation: shoot 2s ease-in-out;
+    }
+
+    @keyframes shoot {
+      0% { opacity: 0; transform: translate(0, 0) scale(0.5); }
+      10% { opacity: 1; }
+      100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(1.2); }
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .profile-box {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(35px) saturate(180%) contrast(120%);
+      border-radius: 30px;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.05), 0 0 30px rgba(0, 0, 0, 0.4);
+      padding: 2.5rem;
+      text-align: center;
+      width: 380px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.2s ease-out;
+      overflow: visible;
+    }
+
+    .profile-pic {
+      width: 140px;
+      height: 140px;
+      border-radius: 25px;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      background: url('https://media.tenor.com/DvXogICtA_MAAAAM/pitowontwt-blac-youngsta-flexing.gif') center center / cover no-repeat;
+      margin: 0 auto 1rem auto;
+      display: block;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      overflow: hidden;
+    }
+
+    .profile-pic:hover {
+      transform: scale(1.15);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+    }
+
+    .username-glow {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 0 20px rgba(255,255,255,1), 0 0 40px rgba(255,255,255,0.9), 0 0 60px rgba(255,255,255,0.8);
+      margin-bottom: 2rem;
+      animation: slowGlowPulse 5s ease-in-out infinite;
+    }
+
+    @keyframes slowGlowPulse {
+      0%, 100% {
+        text-shadow: 0 0 20px rgba(255,255,255,0.7), 0 0 40px rgba(255,255,255,0.5), 0 0 60px rgba(255,255,255,0.3);
+      }
+      50% {
+        text-shadow: 0 0 30px rgba(255,255,255,1), 0 0 60px rgba(255,255,255,0.9), 0 0 100px rgba(255,255,255,0.8);
+      }
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .link-btn {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      padding: 0.9rem;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.05);
+    }
+
+    .link-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.08);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    }
+
+    .footer-text {
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      color: #fff;
+      text-shadow: 0 0 20px rgba(255,255,255,1), 0 0 40px rgba(255,255,255,0.9), 0 0 80px rgba(255,255,255,0.8);
+      animation: slowGlowPulse 5s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="profile-box" id="profileBox">
+      <div class="profile-pic"></div>
+      <h2 class="username-glow">EditzTrades</h2>
+
+      <div class="links">
+        <div class="link-btn">💬 Discord: <strong>EditzTrades</strong></div>
+        <a href="https://www.youtube.com/@EditzzVFX" class="link-btn" target="_blank">▶️ YouTube</a>
+        <a href="https://x.com/Editz452709" class="link-btn" target="_blank">🐦 Twitter</a>
+        <a href="https://docs.google.com/spreadsheets/d/1ypd6pBxf9PRmcmt1PemWgLSkMmBjTchFlOkyKavySuk/edit?usp=sharing" class="link-btn" target="_blank">💹 Trading P&L</a>
+      </div>
+
+      <div class="footer-text">Futures Trader Lyfe</div>
+    </div>
+  </div>
+
+  <script>
+    for (let i = 0; i < 150; i++) {
+      const dot = document.createElement('div');
+      dot.classList.add('dot');
+      dot.style.top = Math.random() * 100 + 'vh';
+      dot.style.left = Math.random() * 100 + 'vw';
+      dot.style.animationDelay = Math.random() * 5 + 's';
+      document.body.appendChild(dot);
+    }
+
+    function createShootingStar() {
+      const star = document.createElement('div');
+      star.classList.add('shooting-star');
+      star.style.top = Math.random() * window.innerHeight + 'px';
+      star.style.left = Math.random() * window.innerWidth + 'px';
+
+      const tx = (Math.random() - 0.5) * window.innerWidth;
+      const ty = (Math.random() - 0.5) * window.innerHeight;
+      star.style.setProperty('--tx', `${tx}px`);
+      star.style.setProperty('--ty', `${ty}px`);
+
+      document.body.appendChild(star);
+      setTimeout(() => star.remove(), 2000);
+    }
+
+    setInterval(createShootingStar, 3000 + Math.random() * 2000);
+
+    const profileBox = document.getElementById('profileBox');
+    document.addEventListener('mousemove', (e) => {
+      const x = (window.innerWidth / 2 - e.pageX) / 50;
+      const y = (window.innerHeight / 2 - e.pageY) / 50;
+      profileBox.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+    });
+  </script>
+</body>
+</html>
